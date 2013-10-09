@@ -9,7 +9,7 @@ import org.openqa.selenium.ie.InternetExplorerDriver;
 
 public class setUp extends Base {
 	
-
+//comment
 	public static int login(String baseURL, String browser, String store, String user, String password) {
 
 //		System.out.println("baseURL=" + baseURL);
