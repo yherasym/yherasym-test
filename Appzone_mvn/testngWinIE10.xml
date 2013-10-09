@@ -1,0 +1,17 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+ 
+<suite name="Suite-Spider" verbose="1" >
+  <parameter name="base-url" value="https://my-qa.enterpriseappzone.com" />
+  <parameter name="browser" value="IE" />
+  <parameter name="store" value="qa-store-yh-1" />
+  <parameter name="user" value="a1@test1.com" />
+  <parameter name="password" value="daPassword1" />
+  
+  <parameter name="urls" value="['manage/applications']" />
+  
+  <test name="Regression-Spider"   >
+    <packages>
+      <package name="com.partnerpedia.appzone.gui.spider" />
+   </packages>
+ </test>
+</suite>
