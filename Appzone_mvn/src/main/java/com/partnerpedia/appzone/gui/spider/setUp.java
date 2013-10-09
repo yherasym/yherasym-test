@@ -26,7 +26,7 @@ public class setUp extends Base {
 			DRIVER = new FirefoxDriver();
 			break;
 		case "IE":
-			System.setProperty("webdriver.ie.driver", "C:\\IE\\IEDriverServer.exe");
+			System.setProperty("webdriver.ie.driver", "ExecPath\\IEDriverServer.exe");
 			DRIVER = new InternetExplorerDriver();
 			break;
 		case "Chrome":
