@@ -27,9 +27,9 @@ public class setUp extends Base {
 			break;
 		case "IE":
 			System.out.println("======System Properties:" + System.getProperties());
-			//System.setProperty("webdriver.ie.driver", System.get  "ExePath\\IEDriverServer.exe");
+			System.setProperty("webdriver.ie.driver", System.getProperty("user.dir")+"ExePath\\IEDriverServer.exe");
 			//System.setProperty("webdriver.ie.driver", "C:\\IE\\IEDriverServer.exe");
-			System.exit(100);
+			//System.exit(100);
 			DRIVER = new InternetExplorerDriver();
 			break;
 		case "Chrome":
