@@ -32,9 +32,8 @@ public class setUp extends Base {
 			try {
 			 DRIVER = new InternetExplorerDriver();
 			} catch (Exception e) {
-				switch(e.hashCode()){
-				case 1807949536:
-				    //"Could not start a new session. Possible causes are invalid address of the remote server or browser start-up failure.": 
+				switch(e.getMessage().substring(0, 30)){
+				case "Could not start a new session. ": 
 					System.out.println("Please set permission for IEDriverServer.exe");
 					break;
 				default:
