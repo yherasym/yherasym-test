@@ -33,7 +33,7 @@ public class setUp extends Base {
 			 DRIVER = new InternetExplorerDriver();
 			} catch (Exception e) {
 				switch(e.getMessage().substring(0, 30)){
-				case "Could not start a new session. ": 
+				case "Could not start a new session.": 
 					System.out.println("Please set permission for IEDriverServer.exe");
 					break;
 				default:
