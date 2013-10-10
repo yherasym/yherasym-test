@@ -34,6 +34,7 @@ public class setUp extends Base {
 			} catch (Exception e) {
 				System.out.println("IEDriverServer.exe permission exception:" + e.getMessage());
 				System.out.println("=====IEDriverServer.exe getLocalizedMessage:" + e.getLocalizedMessage());
+				System.out.println("=====IEDriverServer.exe getMessage:" + e.getMessage());
 				e.printStackTrace();
 				System.exit(100);
 			}
