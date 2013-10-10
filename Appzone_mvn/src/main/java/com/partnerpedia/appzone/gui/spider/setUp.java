@@ -32,14 +32,14 @@ public class setUp extends Base {
 			try {
 			 DRIVER = new InternetExplorerDriver();
 			} catch (Exception e) {
-				switch(e.getMessage()){
-				case "Could not start a new session. Possible causes are invalid address of the remote server or browser start-up failure.": 
+				switch(e.hashCode()){
+				case 1807949536:
+				    //"Could not start a new session. Possible causes are invalid address of the remote server or browser start-up failure.": 
 					System.out.println("Please set permission for IEDriverServer.exe");
 					break;
 				default:
 					System.out.println("=======Unknown exception occured=====" + e.getMessage());
-					System.out.println("=======Unknown exception occured=====" + e.hashCode() + "===");
-					
+					System.out.println("=======hashCode=====" + e.hashCode() + "===");
 					System.out.println("=======begin of stack-trace=========");
 					e.printStackTrace();
 					System.out.println("=======end of stack-trace=========");
