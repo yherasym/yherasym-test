@@ -27,12 +27,8 @@ public class setUp extends Base {
 			break;
 		case "IE":
 			System.out.println("======System Properties before:" + System.getProperties());
-			//System.setProperty("webdriver.ie.driver", System.getProperty("user.dir")+"\\ExePath\\IEDriverServer.exe");
-			//System.setProperty("webdriver.ie.driver", "C:\\Users\\yherasym\\.jenkins\\jobs\\MavenIE\\workspace\\Appzone_mvn\\ExePath\\IEDriverServer.exe");
-			System.out.println("======System Properties after:" + System.getProperties());
-			System.setProperty("webdriver.ie.driver", "C:\\IE\\IEDriverServer.exe");
-			//System.exit(100);
-			//C:\Users\yherasym\.jenkins\jobs\MavenIE\workspace\Appzone_mvn\ExePath\IEDriverServer.exe
+			System.setProperty("webdriver.ie.driver", System.getProperty("user.dir")+"\\ExePath\\IEDriverServer.exe");
+			//System.setProperty("webdriver.ie.driver", "C:\\IE\\IEDriverServer.exe");
 			DRIVER = new InternetExplorerDriver();
 			break;
 		case "Chrome":
