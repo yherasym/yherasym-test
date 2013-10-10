@@ -1,5 +1,7 @@
 package com.partnerpedia.appzone.gui.spider;
 
+import java.io.IOException;
+
 import org.openqa.selenium.By;
 //import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -26,17 +28,25 @@ public class setUp extends Base {
 			DRIVER = new FirefoxDriver();
 			break;
 		case "IE":
-			System.out.println("======System Properties before:" + System.getProperties());
+			//System.out.println("======System Properties before:" + System.getProperties());
 			System.setProperty("webdriver.ie.driver", System.getProperty("user.dir")+"\\ExePath\\IEDriverServer.exe");
 			//System.setProperty("webdriver.ie.driver", "C:\\IE\\IEDriverServer.exe");
 			try {
 			 DRIVER = new InternetExplorerDriver();
 			} catch (Exception e) {
-				System.out.println("IEDriverServer.exe permission exception:" + e.getMessage());
-				System.out.println("=====IEDriverServer.exe getLocalizedMessage:" + e.getLocalizedMessage());
-				System.out.println("=====IEDriverServer.exe getMessage:" + e.getMessage());
-				e.printStackTrace();
-				System.exit(100);
+				switch(e.getMessage()){
+				case "Could not start a new session. Possible causes are invalid address of the remote server or browser start-up failure.":
+					System.out.println("Please set permission for IEDriverServer.exe");
+					break;
+				default:
+					System.out.println("=======Unknown exception occured=====" + e.getMessage());
+					e.printStackTrace();
+					System.out.println("=======end of stack-trace=========");
+					System.out.println("IEDriverServer.exe permission exception:" + e.getMessage());
+					System.out.println("=====IEDriverServer.exe getLocalizedMessage:" + e.getLocalizedMessage());
+					System.out.println("=====IEDriverServer.exe getMessage:" + e.getMessage());
+					System.exit(100);
+				}
 			}
 			break;
 		case "Chrome":
