@@ -29,7 +29,13 @@ public class setUp extends Base {
 			System.out.println("======System Properties before:" + System.getProperties());
 			System.setProperty("webdriver.ie.driver", System.getProperty("user.dir")+"\\ExePath\\IEDriverServer.exe");
 			//System.setProperty("webdriver.ie.driver", "C:\\IE\\IEDriverServer.exe");
-			DRIVER = new InternetExplorerDriver();
+			try {
+			 DRIVER = new InternetExplorerDriver();
+			} catch (Exception e) {
+				System.out.println("IEDriverServer.exe permission exception:" + e.getMessage());
+				e.printStackTrace();
+				System.exit(100);
+			}
 			break;
 		case "Chrome":
 			DRIVER = new ChromeDriver();
