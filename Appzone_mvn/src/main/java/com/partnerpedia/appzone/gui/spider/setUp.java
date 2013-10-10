@@ -38,7 +38,7 @@ public class setUp extends Base {
 					break;
 				default:
 					System.out.println("=======Unknown exception occured=====" + e.getMessage());
-					System.out.println("=======hashCode=====" + e.hashCode() + "===");
+					System.out.println("=======getMessage(30)=====" + e.getMessage().substring(0, 30) + "===");
 					System.out.println("=======begin of stack-trace=========");
 					e.printStackTrace();
 					System.out.println("=======end of stack-trace=========");
