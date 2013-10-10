@@ -1,7 +1,5 @@
 package com.partnerpedia.appzone.gui.spider;
 
-import java.io.IOException;
-
 import org.openqa.selenium.By;
 //import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -40,11 +38,9 @@ public class setUp extends Base {
 					break;
 				default:
 					System.out.println("=======Unknown exception occured=====" + e.getMessage());
+					System.out.println("=======begin of stack-trace=========");
 					e.printStackTrace();
 					System.out.println("=======end of stack-trace=========");
-					System.out.println("IEDriverServer.exe permission exception:" + e.getMessage());
-					System.out.println("=====IEDriverServer.exe getLocalizedMessage:" + e.getLocalizedMessage());
-					System.out.println("=====IEDriverServer.exe getMessage:" + e.getMessage());
 					System.exit(100);
 				}
 			}
