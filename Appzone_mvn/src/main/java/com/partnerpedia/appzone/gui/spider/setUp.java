@@ -7,8 +7,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 
-public class setUp extends Base {
-	
+public class setUp extends Base { 
 //comment
 	public static int login(String baseURL, String browser, String store, String user, String password) {
 
