@@ -11,7 +11,7 @@
   
   <test name="Regression-Spider"   >
     <packages>
-      <package name="com.partnerpedia.appzone.gui.spider" />
+      <package name="com.partnerpedia.appzone.web.test" />
    </packages>
  </test>
 </suite>
