@@ -1,4 +1,4 @@
-package com.partnerpedia.appzone.gui.spider;
+package com.partnerpedia.appzone.web.test;
 
 import org.openqa.selenium.By;
 //import org.openqa.selenium.WebDriver;

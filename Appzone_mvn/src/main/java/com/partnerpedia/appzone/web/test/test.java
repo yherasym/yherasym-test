@@ -1,4 +1,4 @@
-package com.partnerpedia.appzone.gui.spider;
+package com.partnerpedia.appzone.web.test;
 
 import java.lang.reflect.Type;
 import java.util.Collection;
