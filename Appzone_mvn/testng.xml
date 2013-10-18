@@ -1,0 +1,18 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+ 
+<suite name="AppZone QA Web Suite" verbose="1">
+
+	<parameter name="environmentUrl" value="https://my-qa.enterpriseappzone.com" />
+	<parameter name="browser" value="FireFox" />
+	<parameter name="screenResolution" value="1024x768" />
+
+
+ 	<test name="Regression-Login" verbose="1">
+ 		<parameter name="storeId" value="qa-store-yh-1" />
+		<classes>
+			<class name="com.partnerpedia.appzone.web.pageobject.test.LoginTest" />
+		</classes>
+	</test>
+
+ 
+</suite>

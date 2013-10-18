@@ -28,12 +28,30 @@ public class LoginTest implements TestsInterface {
 	@Parameters ({"environmentUrl", "browser", "storeId", "screenResolution"})
 	@BeforeClass
 	public void setUp(String baseURL, String browser, String store, String screenResolution) throws Exception {
-		//set browser
-		this.driver = Utils.setWebDriver(browser);
+
+		//set systems vars:
+		String propBrowser = System.getProperty("browser");
+		System.out.println("-Dbrowser=" + propBrowser);
+		String propResolution = System.getProperty("screenResolution");
+		System.out.println("-DscreenResolution=" + propResolution);
+		String propEnvironment = System.getProperty("environment");
+		System.out.println("-Denvironment=" + propEnvironment);
+		if (propBrowser == null || propResolution == null || propEnvironment == null) {
+			LOGGER.fatal("Some system variables are not set. Use -D<prop>=<value> in mvn command line.");
+			System.exit(100);
+		}
+			
+		
+		//set browser		
+		//this.driver = Utils.setWebDriver(browser);
+		this.driver = Utils.setWebDriver(propBrowser);
 		this.storeId = store;
-		this.screenResolution = screenResolution;
+		//this.screenResolution = screenResolution;
+		this.screenResolution = propResolution;
 		//
-		this.loginUrl = baseURL + "/" + storeId + "/" + LOGIN_PATH;
+		//this.loginUrl = baseURL + "/" + storeId + "/" + LOGIN_PATH;
+		this.loginUrl = propEnvironment + "/" + storeId + "/" + LOGIN_PATH;
+		
 
 	}
 
