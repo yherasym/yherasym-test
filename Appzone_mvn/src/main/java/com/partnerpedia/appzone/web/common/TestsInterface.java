@@ -1,7 +1,6 @@
 package com.partnerpedia.appzone.web.common;
 
-public interface CommonPagesInterface {
-	
+public interface TestsInterface {
 	//wait timeout maximum in seconds
 	public static final Long TIMEOUT_MAX = 20L;
 	

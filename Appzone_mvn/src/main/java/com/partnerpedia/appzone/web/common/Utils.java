@@ -7,9 +7,9 @@ import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.testng.log4testng.Logger;
 
-public class Commons {
+public class Utils {
 
-	static final Logger LOGGER = Logger.getLogger(Commons.class);
+	static final Logger LOGGER = Logger.getLogger(Utils.class);
 	
 	public static WebDriver setWebDriver(String browser) throws Exception {
 		WebDriver driver = null;

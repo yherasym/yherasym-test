@@ -6,9 +6,10 @@ import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.log4testng.Logger;
 
-import com.partnerpedia.appzone.web.common.CommonPagesInterface;
+import com.partnerpedia.appzone.web.common.PagesInterface;
+import com.partnerpedia.appzone.web.common.TestsInterface;
 
-public class LoginPage implements CommonPagesInterface {
+public class LoginPage implements PagesInterface, TestsInterface {
 	private String loginUrl;
 	private WebDriver driver;
 	private String userType;
@@ -20,15 +21,19 @@ public class LoginPage implements CommonPagesInterface {
 		this.driver=driver;
 	}
 	
-	public Boolean openLoginPage() throws Exception {
-		driver.get(loginUrl);
-		
-		return (new WebDriverWait(this.driver, TIMEOUT_MAX)).until(new ExpectedCondition<Boolean>() {
-            public Boolean apply(WebDriver d) {
-                return (d.getTitle().startsWith("Account Log In"));
-            }
-		  });
-		
+	public Boolean openPage() throws Exception {
+		try {
+			driver.get(loginUrl);
+			return (new WebDriverWait(this.driver, TIMEOUT_MAX))
+					.until(new ExpectedCondition<Boolean>() {
+						public Boolean apply(WebDriver d) {
+							return (d.getTitle().startsWith("Account Log In"));
+						}
+					});
+		} catch (Exception e) {
+			LOGGER.error("Exception in openLoginPage() method");
+			return Boolean.FALSE;
+		}
 	}
 	
 	public Boolean login(String user, String password) throws Exception {
@@ -100,13 +105,20 @@ public class LoginPage implements CommonPagesInterface {
 	}
 	
 	public Boolean logout() throws Exception {
-		driver.findElement(By.linkText("Log Out")).click();
-		
-		return (new WebDriverWait(this.driver, TIMEOUT_MAX)).until(new ExpectedCondition<Boolean>() {
-            public Boolean apply(WebDriver d) {
-                return (d.getTitle().startsWith("Account Log In"));
-            }
-		  });
+
+		try {
+			driver.findElement(By.linkText("Log Out")).click();
+			
+			return (new WebDriverWait(this.driver, TIMEOUT_MAX))
+					.until(new ExpectedCondition<Boolean>() {
+						public Boolean apply(WebDriver d) {
+							return (d.getTitle().startsWith("Account Log In"));
+						}
+					});
+		} catch (Exception e) {
+			LOGGER.error("Exception in logout() method");
+			e.printStackTrace();
+			return Boolean.FALSE;
+		}
 	}
-	
 }

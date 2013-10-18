@@ -9,12 +9,12 @@ import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import org.testng.log4testng.Logger;
 
-import com.partnerpedia.appzone.web.common.CommonPagesInterface;
-import com.partnerpedia.appzone.web.common.Commons;
+import com.partnerpedia.appzone.web.common.TestsInterface;
+import com.partnerpedia.appzone.web.common.Utils;
 import com.partnerpedia.appzone.web.pageobject.libs.LoginPage;
 
 
-public class LoginTest implements CommonPagesInterface {
+public class LoginTest implements TestsInterface {
 	
 	private WebDriver driver;
 	private String loginUrl;
@@ -25,11 +25,11 @@ public class LoginTest implements CommonPagesInterface {
 	
 	private static final Logger LOGGER = Logger.getLogger(LoginTest.class);
 
-	@Parameters ({"environmentUrl", "browser", "storeId", "screen-resolution"})
+	@Parameters ({"environmentUrl", "browser", "storeId", "screenResolution"})
 	@BeforeClass
 	public void setUp(String baseURL, String browser, String store, String screenResolution) throws Exception {
 		//set browser
-		this.driver = Commons.setWebDriver(browser);
+		this.driver = Utils.setWebDriver(browser);
 		this.storeId = store;
 		this.screenResolution = screenResolution;
 		//
@@ -63,7 +63,7 @@ public class LoginTest implements CommonPagesInterface {
 			System.exit(100);
 		}
 		
-		Assert.assertTrue(loginPage.openLoginPage(), "<...cannot open Log In page...>" + infoString);
+		Assert.assertTrue(loginPage.openPage(), "<...cannot open Log In page...>" + infoString);
 		
 		Assert.assertTrue(loginPage.verifyPageGUIscreenshot(), "<...Incorrect LogIn screenshot...>" + infoString);
 		Assert.assertTrue(loginPage.verifyPageSpelling(), "<...Incorrect LogIn spelling" + infoString);
@@ -81,7 +81,6 @@ public class LoginTest implements CommonPagesInterface {
 		//logout
 		Assert.assertTrue(loginPage.logout(), "<...cannot logout...>" + infoString);
 		//System.out.println("TC4===:" + tc + ":" + tcDescription + ":" + user + ":" + password);
-
 	}	
 
 	

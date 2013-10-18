@@ -3,7 +3,7 @@
 <suite name="AppZone QA Web Suite" verbose="1">
 	<parameter name="environmentUrl" value="https://my-qa.enterpriseappzone.com" />
 	<parameter name="browser" value="IE" />
-	<parameter name="screen-resolution" value="1024x768" />
+	<parameter name="screenResolution" value="1024x768" />
 
 	<parameter name="user" value="a1@test1.com" />
 	<parameter name="password" value="daPassword1" />
