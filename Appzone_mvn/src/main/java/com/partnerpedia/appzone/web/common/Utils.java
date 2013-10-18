@@ -29,7 +29,7 @@ public class Utils {
 					System.exit(100);
 					break;
 				default:
-					LOGGER.fatal("=======Unknown exception occured=====" + e.getMessage());
+					LOGGER.fatal("=======Unknown exception occured in setWebDriver() method=====" + e.getMessage());
 					LOGGER.fatal("=======getMessage(30)=====" + e.getMessage().substring(0, 30) + "===");
 					LOGGER.fatal("=======begin of stack-trace=========");
 					e.printStackTrace();
@@ -53,6 +53,10 @@ public class Utils {
 			System.exit(100);
 		}
 		return driver;
+	}
+	
+	public static Boolean initializeSystemProperties() {
+		return Boolean.TRUE;
 	}
 	
 	

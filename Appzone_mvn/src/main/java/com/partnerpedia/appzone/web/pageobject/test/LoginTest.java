@@ -20,38 +20,34 @@ public class LoginTest implements TestsInterface {
 	private String loginUrl;
 	private String storeId;
 	private String screenResolution;
+	private String browser;
+	private String environment;
 	
 	private LoginPage loginPage;
 	
 	private static final Logger LOGGER = Logger.getLogger(LoginTest.class);
 
-	@Parameters ({"environmentUrl", "browser", "storeId", "screenResolution"})
+	@Parameters ({"storeId"})
 	@BeforeClass
-	public void setUp(String baseURL, String browser, String store, String screenResolution) throws Exception {
+	public void setUp(String store) throws Exception {
 
 		//set systems vars:
-		String propBrowser = System.getProperty("browser");
-		System.out.println("-Dbrowser=" + propBrowser);
-		String propResolution = System.getProperty("screenResolution");
-		System.out.println("-DscreenResolution=" + propResolution);
-		String propEnvironment = System.getProperty("environment");
-		System.out.println("-Denvironment=" + propEnvironment);
-		if (propBrowser == null || propResolution == null || propEnvironment == null) {
-			LOGGER.fatal("Some system variables are not set. Use -D<prop>=<value> in mvn command line.");
+		this.browser = System.getProperty("browser");
+		System.out.println("-Dbrowser=" + this.browser);
+		this.screenResolution = System.getProperty("screenResolution");
+		System.out.println("-DscreenResolution=" + this.screenResolution);
+		this.environment = System.getProperty("environment");
+		System.out.println("-Denvironment=" + this.environment);
+		if (this.browser == null || this.screenResolution == null || this.environment == null) {
+			LOGGER.fatal("Some system variables are not set. " +
+					"For example, use >mvn test -Dbrowser=FireFox -DscreenResolution=1024x768 -Denvironment=https://my-qa.enterpriseappzone.com");
 			System.exit(100);
 		}
-			
-		
 		//set browser		
-		//this.driver = Utils.setWebDriver(browser);
-		this.driver = Utils.setWebDriver(propBrowser);
+		this.driver = Utils.setWebDriver(this.browser);
 		this.storeId = store;
-		//this.screenResolution = screenResolution;
-		this.screenResolution = propResolution;
 		//
-		//this.loginUrl = baseURL + "/" + storeId + "/" + LOGIN_PATH;
-		this.loginUrl = propEnvironment + "/" + storeId + "/" + LOGIN_PATH;
-		
+		this.loginUrl = this.environment + "/" + storeId + "/" + LOGIN_PATH;
 
 	}
 
