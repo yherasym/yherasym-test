@@ -3,8 +3,11 @@ package com.partnerpedia.appzone.web.pageobject.test;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
+import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import org.testng.log4testng.Logger;
@@ -18,7 +21,7 @@ public class LoginTest implements TestsInterface {
 	
 	private WebDriver driver;
 	private String loginUrl;
-	private String storeId;
+	private String store;
 	private String screenResolution;
 	private String browser;
 	private String environment;
@@ -27,27 +30,53 @@ public class LoginTest implements TestsInterface {
 	
 	private static final Logger LOGGER = Logger.getLogger(LoginTest.class);
 
-	@Parameters ({"storeId"})
+	@Parameters ({"store", "environment", "browser", "screenResolution"})
 	@BeforeClass
-	public void setUp(String store) throws Exception {
+	public final void setUp( String pStore,
+						@Optional("http://my-qa.enterpriseappzone.com") String pEnvironment, 
+						@Optional("FireFox") String pBrowser,
+						@Optional("1024x768") String pScreenResolution )
+					throws Exception {
 
+		System.out.println("pStore=" + pStore);
+		System.out.println("pEnvironment=" + pEnvironment);
+		System.out.println("pBrowser=" + pBrowser);
+		System.out.println("pScreenResolution=" + pScreenResolution);
+		
+		this.store = pStore;
+		System.out.println("this.store=" + this.store);
 		//set systems vars:
 		this.browser = System.getProperty("browser");
 		System.out.println("-Dbrowser=" + this.browser);
-		this.screenResolution = System.getProperty("screenResolution");
-		System.out.println("-DscreenResolution=" + this.screenResolution);
+		if (this.browser == null) {
+			this.browser = pBrowser;
+		}
+		System.out.println("this.browser=" + this.browser);
+		//
 		this.environment = System.getProperty("environment");
 		System.out.println("-Denvironment=" + this.environment);
+		if (this.environment == null) {
+			this.environment = pEnvironment;
+		}
+		System.out.println("this.environment=" + this.environment);
+		//
+		this.loginUrl = this.environment + "/" + this.store + "/" + LOGIN_PATH;
+		System.out.println("this.loginUrl=" + this.loginUrl);
+		//
+		this.screenResolution = System.getProperty("screenResolution");
+		System.out.println("-DscreenResolution=" + this.screenResolution);
+		if (this.screenResolution == null) {
+			this.screenResolution = pScreenResolution;
+		}
+		System.out.println("this.screenResolution=" + this.screenResolution);
+		//
 		if (this.browser == null || this.screenResolution == null || this.environment == null) {
 			LOGGER.fatal("Some system variables are not set. " +
 					"For example, use >mvn test -Dbrowser=FireFox -DscreenResolution=1024x768 -Denvironment=https://my-qa.enterpriseappzone.com");
 			System.exit(100);
 		}
 		//set browser		
-		this.driver = Utils.setWebDriver(this.browser);
-		this.storeId = store;
-		//
-		this.loginUrl = this.environment + "/" + storeId + "/" + LOGIN_PATH;
+		this.driver = Utils.setWebDriver(browser);
 
 	}
 
@@ -67,42 +96,36 @@ public class LoginTest implements TestsInterface {
 	
 	@Test( description = "Positive verification of Log In functionality for various valid username/password pairs",
 			dataProvider = "login_positive")
-	public void LoginTestPositive(String tc, String user, String password, String expected, String userType, String tcDescription) throws Exception {
+	public final void LoginTestPositive(String tc, String user, String password, String expected, String userType, String tcDescription) throws Exception {
 		
-		String infoString = tc + ":" + tcDescription + ":" + user + ":" + password;
-		//	
-		loginPage = new LoginPage(driver, loginUrl);
-		if (loginPage == null){
-			LOGGER.fatal("LogIn page is null");
+		loginPage = new LoginPage(this.driver, this.loginUrl);
+		if (this.loginPage == null){
+			LOGGER.fatal("LogIn page is null - in LoginTestPositive() method");
 			System.exit(100);
 		}
 		
+		String infoString = tc + ":" + tcDescription + ":" + user + ":" + password;
+		//	
 		Assert.assertTrue(loginPage.openPage(), "<...cannot open Log In page...>" + infoString);
 		
 		Assert.assertTrue(loginPage.verifyPageGUIscreenshot(), "<...Incorrect LogIn screenshot...>" + infoString);
 		Assert.assertTrue(loginPage.verifyPageSpelling(), "<...Incorrect LogIn spelling" + infoString);
 		Assert.assertTrue(loginPage.verifyPageLinks(), "<...Incorrect LogIn links...>" + infoString);
 		
-		//
-		//System.out.println("TC1===:" + tc + ":" + tcDescription + ":" + user + ":" + password);
 		Assert.assertTrue(loginPage.login(user, password), "<...Incorrect LogIn...>" + infoString);
 		
-		//System.out.println("TC2===:" + tc + ":" + tcDescription + ":" + user + ":" + password);
 		Assert.assertTrue(loginPage.verifyLoginSuccess(userType, expected), "Login is not successful:" + infoString);
 		
-		//System.out.println("TC3===:" + tc + ":" + tcDescription + ":" + user + ":" + password);
-	
 		//logout
 		Assert.assertTrue(loginPage.logout(), "<...cannot logout...>" + infoString);
-		//System.out.println("TC4===:" + tc + ":" + tcDescription + ":" + user + ":" + password);
 	}	
 
 	
 	@AfterClass
-	public void tearDown() {
+	public final void tearDown() {
 		//cleaning, releasing recourses
-		driver.quit();
-		driver = null;
+		this.driver.quit();
+		this.driver = null;
 		loginPage = null;
 	}
 	
