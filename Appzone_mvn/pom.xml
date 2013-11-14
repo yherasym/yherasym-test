@@ -57,7 +57,7 @@
 						</goals>
 						<configuration>
 							<suiteXmlFiles>
-								<suiteXmlFile>testng.xml</suiteXmlFile>
+								<suiteXmlFile>testng_LoginSuite.xml</suiteXmlFile>
 							</suiteXmlFiles>
 						</configuration>
 					</execution>
