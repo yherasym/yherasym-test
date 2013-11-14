@@ -1,13 +1,23 @@
 package com.partnerpedia.appzone.web.common;
 
+import java.io.IOException;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.testng.log4testng.Logger;
 
-public class Utils {
+public class Utils implements TestsInterface {
 
 	static final Logger LOGGER = Logger.getLogger(Utils.class);
 	
@@ -55,9 +65,44 @@ public class Utils {
 		return driver;
 	}
 	
-	public static Boolean initializeSystemProperties() {
-		return Boolean.TRUE;
+	public static String getResource(String fileName) {
+		return RESOURCE_PATH + fileName;
 	}
-	
+
+	public static Boolean verifyWebPageLinks(String testCase, WebDriver driver) throws IOException {
+
+		Boolean result = false;
+		
+		List<WebElement> anchors = driver.findElements(By.tagName("a"));
+		Iterator<WebElement> i = anchors.iterator();
+		List<String> anchorText = new ArrayList<String>();
+		while (i.hasNext()) {
+			WebElement anchor = i.next();
+			//ignore invisible and disabled links
+			if (anchor.isDisplayed() && anchor.isEnabled() ) {
+				anchorText.add(anchor.getText());
+			}
+		}
+		Iterator<String> i2 = anchorText.iterator();
+		while (i2.hasNext()) {
+			String text = i2.next();
+			System.out.println("links==>" + text);
+			String aRef = driver.findElement(By.linkText(text)).findElement(By.name("href")).getText();
+			URL url = new URL(aRef);
+			HttpURLConnection huc = (HttpURLConnection) url.openConnection();
+			huc.setRequestMethod("GET");
+			huc.connect();
+			if ( huc.getResponseCode() == 404 ) {
+				System.out.println("link==404 :>:" + text);
+				result = false;
+			}
+			
+//			a.click();
+//			//do check here
+//			driver.navigate().back();
+		}
+		
+		return result;
+	}
 	
 }

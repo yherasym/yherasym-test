@@ -1,0 +1,17 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+ 
+<suite name="AppZone QA Web Suite" verbose="1">
+
+   	<test name="Trigering IOS DCS client" verbose="1">
+ 		<!-- testing store -->
+ 		<parameter name="store" value="test-store-01" />
+		<parameter name="user_admin" value="a1@test-store-01.com" />
+		<parameter name="password_ua" value="daP@ssworda1" />
+	
+		<!-- running tests by class-names -->
+		<classes>
+			<class name="com.partnerpedia.appzone.web.pageobject.store_configuration.test.TrigeringIosDcsBuildTest" />
+		</classes>
+	</test>
+ 
+</suite>

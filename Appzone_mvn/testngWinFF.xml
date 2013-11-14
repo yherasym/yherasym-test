@@ -11,7 +11,7 @@
  	<test name="Regression-Login" verbose="1">
  		<parameter name="storeId" value="qa-store-yh-1" />
 		<classes>
-			<class name="com.partnerpedia.appzone.web.pageobject.test.LoginTest" />
+			<class name="com.partnerpedia.appzone.web.pageobject.test.LoginPagePositiveLoginTest" />
 		</classes>
 	</test>
 
