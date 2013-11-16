@@ -7,31 +7,33 @@
 
 	<dependencies>
 		<dependency>
-			<groupId>org.testng</groupId>
-			<artifactId>testng</artifactId>
-			<version>6.8.7</version>
+			<groupId>org.seleniumhq.selenium</groupId>
+			<artifactId>selenium-java</artifactId>
+			<version>2.37.1</version>
 		</dependency>
 		<dependency>
 			<groupId>org.seleniumhq.selenium</groupId>
-			<artifactId>selenium-java</artifactId>
-			<version>2.35.0</version>
+			<artifactId>selenium-ie-driver</artifactId>
+			<version>2.37.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.seleniumhq.selenium</groupId>
+			<artifactId>selenium-firefox-driver</artifactId>
+			<version>2.37.1</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.testng</groupId>
+			<artifactId>testng</artifactId>
+			<version>6.8.7</version>
 		</dependency>
 		<dependency>
 			<groupId>com.google.code.gson</groupId>
 			<artifactId>gson</artifactId>
 			<version>2.2.4</version>
 		</dependency>
-		<dependency>
-			<groupId>org.seleniumhq.selenium</groupId>
-			<artifactId>selenium-ie-driver</artifactId>
-			<version>2.35.0</version>
-		</dependency>
-		<dependency>
-			<groupId>org.seleniumhq.selenium</groupId>
-			<artifactId>selenium-firefox-driver</artifactId>
-			<version>2.35.0</version>
-		</dependency>
 	</dependencies>
+
 
 	<build>
 		<plugins>
@@ -68,7 +70,7 @@
 
 	<profiles>
 		<profile>
-			<id>testngWinFF</id>
+			<id>LoginSuite</id>
 			<build>
 				<plugins>
 					<plugin>
@@ -84,7 +86,7 @@
 								</goals>
 								<configuration>
 									<suiteXmlFiles>
-										<suiteXmlFile>testngWinFF.xml</suiteXmlFile>
+										<suiteXmlFile>testng_LoginSuite.xml</suiteXmlFile>
 									</suiteXmlFiles>
 								</configuration>
 							</execution>
@@ -94,7 +96,7 @@
 			</build>
 		</profile>
 		<profile>
-			<id>testngWinIE</id>
+			<id>TrigeringIosDcsBuild</id>
 			<build>
 				<plugins>
 					<plugin>
@@ -110,7 +112,7 @@
 								</goals>
 								<configuration>
 									<suiteXmlFiles>
-										<suiteXmlFile>testngWinIE.xml</suiteXmlFile>
+										<suiteXmlFile>testng_TrigeringIosDcsBuild.xml</suiteXmlFile>
 									</suiteXmlFiles>
 								</configuration>
 							</execution>
