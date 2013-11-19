@@ -46,25 +46,25 @@
 					<target>1.7</target>
 				</configuration>
 			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-surefire-plugin</artifactId>
-				<version>2.16</version>
-				<executions>
-					<execution>
-						<id>default-test</id>
-						<phase>test</phase>
-						<goals>
-							<goal>test</goal>
-						</goals>
-						<configuration>
-							<suiteXmlFiles>
-								<suiteXmlFile>testng_LoginSuite.xml</suiteXmlFile>
-							</suiteXmlFiles>
-						</configuration>
-					</execution>
-				</executions>
-			</plugin>
+<!-- 			<plugin> -->
+<!-- 				<groupId>org.apache.maven.plugins</groupId> -->
+<!-- 				<artifactId>maven-surefire-plugin</artifactId> -->
+<!-- 				<version>2.16</version> -->
+<!-- 				<executions> -->
+<!-- 					<execution> -->
+<!-- 						<id>default-test</id> -->
+<!-- 						<phase>test</phase> -->
+<!-- 						<goals> -->
+<!-- 							<goal>test</goal> -->
+<!-- 						</goals> -->
+<!-- 						<configuration> -->
+<!-- 							<suiteXmlFiles> -->
+<!-- 								<suiteXmlFile>testng_LoginSuite.xml</suiteXmlFile> -->
+<!-- 							</suiteXmlFiles> -->
+<!-- 						</configuration> -->
+<!-- 					</execution> -->
+<!-- 				</executions> -->
+<!-- 			</plugin> -->
 		</plugins>
 	</build>
 
@@ -96,7 +96,7 @@
 			</build>
 		</profile>
 		<profile>
-			<id>TrigeringIosDcsBuild</id>
+			<id>TrigeringIosDcsBuildSuite</id>
 			<build>
 				<plugins>
 					<plugin>
