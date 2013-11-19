@@ -21,6 +21,11 @@ public class CopyOfTrigeringIosDcsBuildTest implements TestsInterface {
 	private String buildNameBefore;
 	private String buildNameAfter;
 	
+	private String store_id = (System.getProperty("store") == null) ? "test-store-01" : System.getProperty("store");
+	private String user_admin = (System.getProperty("user_admin") == null) ? "a1@test-store-01.com" : System.getProperty("user_admin");
+	private String password_ua = (System.getProperty("password_ua") == null) ? "daP@ssworda1" : System.getProperty("password_ua");
+	
+	
 	private static final Logger LOGGER = Logger.getLogger(CopyOfTrigeringIosDcsBuildTest.class);
 	
 	@BeforeClass
@@ -29,13 +34,12 @@ public class CopyOfTrigeringIosDcsBuildTest implements TestsInterface {
 		this.driver = Utils.setWebDriver(BROWSER);
 		//get the latest build before
 		buildNameBefore = null;
-		buildNameBefore = DeviceClients.getLatestIosBuild(driver, "qa ");
+		buildNameBefore = DeviceClients.getLatestIosBuild(driver, store_id);
 		System.out.println("The latest IOS build before: " + buildNameBefore);
 		//
 		LoginPage loginPage = new LoginPage(this.driver);
 		loginPage.openPage();
-		loginPage.loginSuccessful("a1@test-store-01.com", "daP@ssworda1", "admin");
-		
+		loginPage.loginSuccessful(user_admin, password_ua, "admin");
 	}
 	
 	@Test(description = "Positive verification of iOS-DCS functionality for various positive scenarios")
@@ -58,8 +62,7 @@ public class CopyOfTrigeringIosDcsBuildTest implements TestsInterface {
 		System.out.println("waiting 3 min...:" + new Date());
 		Thread.sleep(3*60*1000);
 		System.out.println("after 3min sleep:" + new Date());
-		buildNameAfter = null;
-		buildNameAfter = DeviceClients.getLatestIosBuild(driver, "qa ");
+		buildNameAfter = DeviceClients.getLatestIosBuild(driver, store_id);
 		System.out.println("The latest IOS build after: " + buildNameAfter);
 		//verify that after and before builds are not same
 		Assert.assertFalse(buildNameAfter.equals(buildNameBefore), "before and after builds are same");
@@ -68,6 +71,11 @@ public class CopyOfTrigeringIosDcsBuildTest implements TestsInterface {
 	@AfterClass
 	public final void tearDown() {
 		//cleaning, releasing recourses
+		buildNameBefore = null;
+		buildNameAfter = null;
+		store_id = null;
+		user_admin = null;
+		password_ua = null;
 		this.driver.quit();
 		this.driver = null;
 	}

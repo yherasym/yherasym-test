@@ -5,10 +5,11 @@ public interface TestsInterface {
 	public static final Long TIMEOUT_MAX = 20L;
 	
 	//production environment
-	public static final String ENVIRONMENT = System.getProperty("environment") == null ? "http://my.enterpriseappzone.com" : System.getProperty("environment");
-	public static final String STORE_ID = System.getProperty("store") == null ? "qa-store-yh-1" : System.getProperty("store");
 	
-	//
+	public static final String ENVIRONMENT = System.getProperty("environment") == null ? "http://my-qa.enterpriseappzone.com" : System.getProperty("environment");
+	
+	public static final String STORE_ID = System.getProperty("store") == null ? "test-store-01" : System.getProperty("store");
+	
 	//public static final String ENVIRONMENT = System.getProperty("environment") == null ? "http://my-qa.enterpriseappzone.com" : System.getProperty("environment");
 	public static final String BROWSER = System.getProperty("browser") == null ? "FireFox" : System.getProperty("browser");
 	public static final String SCREEN_RESOLUTION = System.getProperty("screenResolution") == null ? "1024x768" : System.getProperty("screenResolution");
