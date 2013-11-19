@@ -112,7 +112,7 @@
 								</goals>
 								<configuration>
 									<suiteXmlFiles>
-										<suiteXmlFile>testng_TrigeringIosDcsBuild.xml</suiteXmlFile>
+										<suiteXmlFile>testng_TrigeringIosDcsBuildSuite.xml</suiteXmlFile>
 									</suiteXmlFiles>
 								</configuration>
 							</execution>
