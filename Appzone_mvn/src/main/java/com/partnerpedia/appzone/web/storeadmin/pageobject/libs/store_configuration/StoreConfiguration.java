@@ -1,4 +1,4 @@
-package com.partnerpedia.appzone.web.pageobject.libs.store_configuration;
+package com.partnerpedia.appzone.web.storeadmin.pageobject.libs.store_configuration;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;

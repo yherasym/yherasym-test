@@ -16,7 +16,7 @@ import org.testng.log4testng.Logger;
 
 import com.partnerpedia.appzone.web.common.TestsInterface;
 import com.partnerpedia.appzone.web.common.Utils;
-import com.partnerpedia.appzone.web.pageobject.libs.login.LoginPage;
+import com.partnerpedia.appzone.web.storeadmin.pageobject.libs.login.LoginPage;
 
 public class LoginNegativeTest implements TestsInterface {
 

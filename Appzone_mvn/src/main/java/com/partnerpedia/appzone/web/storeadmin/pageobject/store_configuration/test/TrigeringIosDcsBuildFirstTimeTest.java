@@ -1,4 +1,4 @@
-package com.partnerpedia.appzone.web.pageobject.store_configuration.test;
+package com.partnerpedia.appzone.web.storeadmin.pageobject.store_configuration.test;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -10,7 +10,7 @@ import org.testng.log4testng.Logger;
 
 import com.partnerpedia.appzone.web.common.TestsInterface;
 import com.partnerpedia.appzone.web.common.Utils;
-import com.partnerpedia.appzone.web.pageobject.libs.store_configuration.StoreConfiguration;
+import com.partnerpedia.appzone.web.storeadmin.pageobject.libs.store_configuration.StoreConfiguration;
 
 public class TrigeringIosDcsBuildFirstTimeTest implements TestsInterface {
 	
