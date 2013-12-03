@@ -10,8 +10,8 @@ import org.testng.log4testng.Logger;
 
 import com.partnerpedia.appzone.web.common.TestsInterface;
 import com.partnerpedia.appzone.web.common.Utils;
-import com.partnerpedia.appzone.web.storeadmin.pageobject.libs.login.LoginPage;
-import com.partnerpedia.appzone.web.storeadmin.pageobject.libs.login.PageDoesNotExistPage;
+import com.partnerpedia.appzone.web.pageobject.libs.login.LoginPage;
+import com.partnerpedia.appzone.web.pageobject.libs.login.PageDoesNotExistPage;
 
 
 public class LoginNonExistingStoreTest implements TestsInterface {
@@ -35,26 +35,17 @@ public class LoginNonExistingStoreTest implements TestsInterface {
 				// incorrect store (correct email&password)
 				{
 						"TC:01-51-04",
-						"a1@test-store-01.com",
-						"daP@ssworda1",
-						// expected error
-						"Unable to Log In. Please verify your email and password and try again.",
-						// expected tip
-						"Entered email or password is incorrect.",
 						// TC description
-						"internal user: incorrect store" },
+						"non-existing store" },
 		};
 	}	
 	
-	
 	@Test(description = "Negative verification of Log In functionality for various negative scenarios", dataProvider = "login_negative")
-	public final void LoginTestNegative(String tc, String user,
-			String password, String expectedError, String expectedTip,
-			String tcDescription) throws Exception {
+	public final void LoginTestNegative(String tc, String tcDescription) throws Exception {
 
-		String infoString = tc + ":" + tcDescription + ":" + user + ":" + password;
+		String infoString = tc + ":" + tcDescription;
 		
-		String newUrl = ENVIRONMENT + "/" + NON_EXISTING_STORE + "/" + LOGIN_PATH;
+		String newUrl = BASE_URL + NON_EXISTING_STORE + "/" + LoginPage.LOGIN_PATH;
 		System.out.println("non-existent-store URL:>" + newUrl);
 		driver.get(newUrl);
 

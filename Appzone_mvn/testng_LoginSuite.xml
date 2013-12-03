@@ -1,31 +1,38 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
- 
+
 <suite name="AppZone QA Web Suite" verbose="1">
 
- 	<test name="Regression-Login" verbose="1">
- 		<!-- testing store -->
- 		<parameter name="store" value="test-store-01" />
- 		
- 		<!-- non existing store -->
- 		<parameter name="non_existent_store" value="non-existent-store" />
- 		
+	<test name="Regression-Login" verbose="1">
+		<!-- testing store -->
+		<parameter name="store" value="test-store-01" />
+
+		<!-- non existing store -->
+		<parameter name="non_existent_store" value="non-existent-store" />
+
 		<!-- deactivated store (correct store/email/password) -->
-			<parameter name="store_deactivated" value="deactivated-store" />
- 			<parameter name="user_ds" value="a1@deactivated-store.com" />
- 			<parameter name="password_ds" value="daP@ssworda1" />
- 		
+		<parameter name="store_deactivated" value="deactivated-store" />
+		<parameter name="user_ds" value="a1@deactivated-store.com" />
+		<parameter name="password_ds" value="daP@ssworda1" />
+
 		<!-- blocking user due max login attempts and his correct password -->
- 			<parameter name="user_blocking_due_max_login_attempts" value="u-blocked@test-store-01.com" />
- 			<parameter name="password_ubdmla" value="daP@sswordu" />
-		
+		<parameter name="blocked_user_due_to_max_login_attempts" value="u-blocked@test-store-01.com" />
+		<parameter name="password_ubdmla" value="daP@sswordu" />
+
 		<!-- running tests by class-names -->
 		<classes>
-			<class name="com.partnerpedia.appzone.web.pageobject.login.test.LoginPositiveTest" />
-			<class name="com.partnerpedia.appzone.web.pageobject.login.test.LoginNegativeTest" />
-			<class name="com.partnerpedia.appzone.web.pageobject.login.test.LoginBlockingUserByMaxLoginAttemptsTest" />
-			<class name="com.partnerpedia.appzone.web.pageobject.login.test.LoginDeactivatedStoreTest" />
-			<class name="com.partnerpedia.appzone.web.pageobject.login.test.LoginNonExistingStoreTest" />
+			<class
+				name="com.partnerpedia.appzone.web.pageobject.login.test.LoginPageTest" />
+			<class
+				name="com.partnerpedia.appzone.web.pageobject.login.test.LoginPositiveTest" />
+			<class
+				name="com.partnerpedia.appzone.web.pageobject.login.test.LoginNegativeTest" />
+			<class
+				name="com.partnerpedia.appzone.web.pageobject.login.test.LoginAsBlockedUserDueToMaxLoginAttemptsTest" />
+			<class
+				name="com.partnerpedia.appzone.web.pageobject.login.test.LoginDeactivatedStoreTest" />
+			<class
+				name="com.partnerpedia.appzone.web.pageobject.login.test.LoginNonExistingStoreTest" />
 		</classes>
 	</test>
- 
+
 </suite>

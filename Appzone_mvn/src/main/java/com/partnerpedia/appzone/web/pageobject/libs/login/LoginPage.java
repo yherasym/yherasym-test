@@ -1,4 +1,4 @@
-package com.partnerpedia.appzone.web.storeadmin.pageobject.libs.login;
+package com.partnerpedia.appzone.web.pageobject.libs.login;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -8,45 +8,49 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.log4testng.Logger;
-
 import com.partnerpedia.appzone.web.common.PagesInterface;
 import com.partnerpedia.appzone.web.common.TestsInterface;
-import com.partnerpedia.appzone.web.common.Utils;
 
 public class LoginPage implements PagesInterface, TestsInterface {
 
+	public final static String EXPECTED_TITLE = "Account Log In";
+	public final static String LOGIN_PATH = "account/new";
 	//
-	private String loginUrl = BASE_URL + LOGIN_PATH;
+	private String loginUrl = BASE_STORE_URL + LOGIN_PATH;
 	private String userType;
 	private WebDriver driver;
 	
 	//page elements
 	//store icon
 	//@FindBy()
-	//private WebElement storeIcon;
+	//public WebElement storeIcon;
+
 	//page title tag
-	@FindBy(tagName="title")	
-	private WebElement title;
+	public String title;
 	//header text
 	@FindBy(xpath="/html/body/div/section/article/form/fieldset/legend/span")
-	private WebElement header;
+	public WebElement header;
 	//email input element
 	@FindBy(id="account_email")
-	private WebElement account;
+	public WebElement account;
 	//password input element
 	@FindBy(id="account_password")
-	private WebElement password;
+	public WebElement password;
 	//Log In button 
 	@FindBy(name="commit")
-	private WebElement button_Login;
+	public WebElement button_Login;
 	//
 	@FindBy(id="forgot_password_link")
-	private WebElement link_ForgotPassword;
+	public WebElement link_ForgotPassword;
 	//footer elements
 	@FindBy(tagName="footer")
-	private WebElement footer;
+	public WebElement footer;
 	
-	//private WebElement logoutTip;
+	//
+	@FindBy(className="error")
+	public WebElement errorMessage;
+	//@FindBy(className="error-tip")
+	//public WebElement errorMessageTip;
 	
 
 	private static final Logger LOGGER = Logger.getLogger(LoginPage.class);
@@ -54,15 +58,20 @@ public class LoginPage implements PagesInterface, TestsInterface {
 	public LoginPage(WebDriver driver) {
 		this.driver = driver;
 		PageFactory.initElements(driver, this);
+		title = driver.getTitle();
 	}
 
 	public Boolean openPage() throws Exception {
 		try {
 			driver.get(this.loginUrl);
+			System.out.println("Login page url:>" + driver.getCurrentUrl());
+			
+			//verifying a redirection to https and Url 
 			return (new WebDriverWait(this.driver, TIMEOUT_MAX))
 					.until(new ExpectedCondition<Boolean>() {
 						public Boolean apply(WebDriver d) {
-							return (d.getTitle().startsWith("Account Log In"));
+							return (d.getCurrentUrl().equals(loginUrl));
+							//return (d.getCurrentUrl().equals("https://my-qa.enterpriseappzone.com/test-store-01/account/new"));
 						}
 					});
 		} catch (Exception e) {
@@ -71,20 +80,18 @@ public class LoginPage implements PagesInterface, TestsInterface {
 			return Boolean.FALSE;
 		}
 	}
+	
+//	public Boolean openPage(String url) throws Exception {
+//		this.loginUrl = url;
+//		return this.openPage();
+//	}
 
-	public Boolean openPage(String url) throws Exception {
-		this.loginUrl = url;
-		return this.openPage();
-	}
 	
-	
-	public void login(String user, String password) {
+	private void login(String user, String password) {
 		try {
-			//driver.get(loginUrl);
 			this.account.sendKeys(user);
 			this.password.sendKeys(password);
 			this.button_Login.click();
-			// LOGGER.warn("title=" + driver.getTitle());
 		} catch (Exception e) {
 			LOGGER.error("Exception in login() method");
 			e.printStackTrace();
@@ -92,7 +99,23 @@ public class LoginPage implements PagesInterface, TestsInterface {
 		}
 	}
 	
-	public Boolean loginSuccessful(String user, String password, String userType) /*
+	public void loginAsStoreAdmin(String user, String password) {
+		userType = "admin";
+		login(user, password);
+	}
+
+	public void loginAsStoreUser(String user, String password) {
+		userType = "user";
+		login(user, password);
+	}
+	
+	public void loginAsMPAdmin(String user, String password) {
+		userType = "mp";
+		login(user, password);
+	}
+	
+	
+	public Boolean loginSuccess(String user, String password, String userType) /*
 																				 * throws
 																				 * Exception
 																				 */{
@@ -141,9 +164,40 @@ public class LoginPage implements PagesInterface, TestsInterface {
 
 	}
 
-	public Boolean loginSuccessful(String user, String password) {
-		return loginSuccessful(user, password, "admin");
-	}
+//	public Boolean loginSuccess(String user, String password) {
+//		return loginSuccess(user, password, "admin");
+//	}
+//	public Boolean loginAsStoreAdminSuccess(String user, String password) {
+//		return loginSuccess(user, password, "admin");
+//	}
+	
+	
+//	//verify that successful Store-Admin login opens a correct landing page 
+//	public Boolean verifySuccessfulLoginAsStoreAdminHardAssert() {
+//
+//		return (new WebDriverWait(driver, TIMEOUT_MAX))
+//				.until(new ExpectedCondition<Boolean>() {
+//					public Boolean apply(WebDriver d) {
+//						return (d.getCurrentUrl().equals(BASE_URL+LANDING_STORE_ADMIN_PATH));
+//					}
+//				});
+//	}
+	
+//	public void verifyLoginAsStoreAdminSoftAssert() {
+//			//verify page title
+//			softAssert.assertTrue(title.getText().equals(EXPECTED_TITLE), "message");
+//			//some other verification...
+//			//
+//			softAssert.assertAll();
+//	}
+	
+	
+//	public Boolean loginAsStoreUserSuccess(String user, String password) {
+//		return loginSuccess(user, password, "user");
+//	}
+//	public Boolean loginAsMPAdminSuccess(String user, String password) {
+//		return loginSuccess(user, password, "mp");
+//	}
 
 	public Boolean loginFailed (String user, String password, String expectedError, String expectedTip) {
 		this.login(user, password);
@@ -159,23 +213,30 @@ public class LoginPage implements PagesInterface, TestsInterface {
 		Boolean result = Boolean.TRUE;
 		
 		//verify page-title
-		System.out.println("title=====>" + driver.getTitle());
-		if (! driver.getTitle().equals("Account Log In")) {
+		if (! driver.getTitle().equals(EXPECTED_TITLE)) {
 			System.out.println("Title is not correct");
+			System.out.println("Actual title=====>" + driver.getTitle());
+			System.out.println("Expected title=====>" + EXPECTED_TITLE);
 			result = Boolean.FALSE;
 		}
+		//softAssert.assertTrue(driver.getTitle().equals(EXPECTED_TITLE), "Title is not correct");		
+		
 		//verify returning URL
 		System.out.println("URL=====>" + driver.getCurrentUrl());
 		if (! driver.getCurrentUrl().endsWith("/account")) {
 			System.out.println("URL is not correct");
 			result = Boolean.FALSE;
 		}
+		//softAssert.assertTrue(driver.getCurrentUrl().endsWith("/account"), "URL is not correct");
+		
 		//verify error message
 		System.out.println("error=====>" + driver.findElement(By.className("error")).getText());
 		if (! driver.findElement(By.className("error")).getText().equals(expectedError)){
 			System.out.println("Error message is not correct");
 			result = Boolean.FALSE;
 		}
+		//softAssert.assertTrue(driver.findElement(By.className("error")).getText().equals(expectedError), "Error message is not correct");
+		
 		//verify tip (second) message
 		if ( expectedTip != null ) {
 			System.out.println("tip=====>" + driver.findElement(By.xpath("/html/body/div/section/article/div/span")).getText());
@@ -184,6 +245,8 @@ public class LoginPage implements PagesInterface, TestsInterface {
 				result = Boolean.FALSE;
 			}
 		}
+		//softAssert.assertTrue(driver.findElement(By.xpath("/html/body/div/section/article/div/span")).getText().equals(expectedTip), "Tip message is not correct");
+		//softAssert.assertAll();
 		
 		return result;
 	}	

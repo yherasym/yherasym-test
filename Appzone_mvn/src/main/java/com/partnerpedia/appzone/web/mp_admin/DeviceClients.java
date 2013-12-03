@@ -7,7 +7,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.partnerpedia.appzone.web.common.TestsInterface;
-import com.partnerpedia.appzone.web.storeadmin.pageobject.libs.login.LoginPage;
+import com.partnerpedia.appzone.web.pageobject.libs.login.LoginPage;
 
 public class DeviceClients implements TestsInterface {
 	public static String getLatestIosBuild(WebDriver driver, String store_id) throws Exception {

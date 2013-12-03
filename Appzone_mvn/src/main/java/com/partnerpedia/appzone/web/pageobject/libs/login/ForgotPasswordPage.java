@@ -1,6 +1,5 @@
-package com.partnerpedia.appzone.web.storeadmin.pageobject.libs.login;
+package com.partnerpedia.appzone.web.pageobject.libs.login;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -11,30 +10,30 @@ import org.testng.log4testng.Logger;
 
 import com.partnerpedia.appzone.web.common.PagesInterface;
 import com.partnerpedia.appzone.web.common.TestsInterface;
-import com.partnerpedia.appzone.web.common.Utils;
 
 public class ForgotPasswordPage implements PagesInterface, TestsInterface {
 
 	//
 	private WebDriver driver;
-	private final static String END_URL = "account/forgot_password";
-	private final static String URL = BASE_URL + END_URL;
-	private final static String EXPECTED_ERROR = "Login Attempts Exceeded. Please Reset Your Password, or contact IT.";
-	private final static String EXPECTED_TIP = "Enter your email address below and instructions to reset your password will be emailed to you";
+	public final static String PATH = "account/forgot_password";
+	private final static String URL = BASE_STORE_URL + PATH;
+	public final static String EXPECTED_ERROR = "Login Attempts Exceeded. Please Reset Your Password, or contact IT.";
+	public final static String EXPECTED_TIP = "Enter your email address below and instructions to reset your password will be emailed to you";
 	//expected Title
-	//private final static String EXPECTED_TITLE = "Forgot Your Password";
+	public final static String EXPECTED_TITLE = "Forgot Your Password";
 	//actual
-	private final static String EXPECTED_TITLE = "Forgot Your Password? at Partnerpedia Marketplace";
-	
+	//public final static String EXPECTED_TITLE = "Forgot Your Password? at Partnerpedia Marketplace";
+	public final static String EXPECTED_URL = BASE_STORE_URL + PATH;
 	
 	//page elements initialized by PageFactory
 	//store icon
 	//@FindBy()
 	//private WebElement storeIcon;
+
 	//page title tag
 	//@FindBy(tagName="title")	
-	//private WebElement title;
-	private String title;
+	//public WebElement title;
+	public String title;
 	//header text
 	@FindBy(className="inputs")
 	private WebElement header;
@@ -55,10 +54,10 @@ public class ForgotPasswordPage implements PagesInterface, TestsInterface {
 	//WebElements for max login attempts error
 	//error text after max login attempts
 	@FindBy(className="error")
-	private WebElement error_max_attempts;
+	public WebElement error_max_attempts;
 	//tip text
 	@FindBy(className="forgot_password_info")
-	private WebElement forgot_password_info;
+	public WebElement forgot_password_info;
 	
 
 	private static final Logger LOGGER = Logger.getLogger(ForgotPasswordPage.class);
@@ -84,37 +83,37 @@ public class ForgotPasswordPage implements PagesInterface, TestsInterface {
 		}
 	}
 	
-	public Boolean verifyPageForMaxLoginAttempts () {
-		Boolean result = Boolean.TRUE;
-	
-		//verify page-title
-		if (! title.equals(EXPECTED_TITLE)) {
-			LOGGER.error("Title is not correct");
-			LOGGER.error("Actual Title=====>" + title);
-			result = Boolean.FALSE;
-		}
-		//verify returning URL
-		if (! driver.getCurrentUrl().endsWith(END_URL)) {
-			LOGGER.error("URL is not correct");
-			LOGGER.error("Actual URL=====>" + driver.getCurrentUrl());
-			result = Boolean.FALSE;
-		}
-		//verify error message
-		if (! error_max_attempts.getText().equals(EXPECTED_ERROR)){
-			LOGGER.error("Error message is not correct");
-			LOGGER.error("Actual error=====>" + error_max_attempts.getText());
-			result = Boolean.FALSE;
-		}
-		//verify tip (second) message
-			if (! forgot_password_info.getText().equals(EXPECTED_TIP)){
-				LOGGER.error("Tip message is not correct");
-				LOGGER.error("tip=====>" + forgot_password_info.getText());
-				result = Boolean.FALSE;
-			}
-		
-		return result;
-	}
 
+//	public Boolean verifyPageForMaxLoginAttempts () {
+//		Boolean result = Boolean.TRUE;
+//		//verify returning URL
+//		if (! driver.getCurrentUrl().endsWith(PATH)) {
+//			LOGGER.error("URL is not correct");
+//			LOGGER.error("Actual URL=====>" + driver.getCurrentUrl());
+//			result = Boolean.FALSE;
+//		}
+//		//verify page-title
+//		if (! title.equals(EXPECTED_TITLE)) {
+//			LOGGER.error("Title is not correct");
+//			LOGGER.error("Actual Title=====>" + title);
+//			result = Boolean.FALSE;
+//		}
+//		//verify error message
+//		if (! error_max_attempts.getText().equals(EXPECTED_ERROR)){
+//			LOGGER.error("Error message is not correct");
+//			LOGGER.error("Actual error=====>" + error_max_attempts.getText());
+//			result = Boolean.FALSE;
+//		}
+//		//verify tip (second) message
+//			if (! forgot_password_info.getText().equals(EXPECTED_TIP)){
+//				LOGGER.error("Tip message is not correct");
+//				LOGGER.error("tip=====>" + forgot_password_info.getText());
+//				result = Boolean.FALSE;
+//			}
+//		return result;
+//	}
+	
+	
 	@Override
 	public Boolean verifyPageLinks() throws Exception {
 		// TODO Auto-generated method stub

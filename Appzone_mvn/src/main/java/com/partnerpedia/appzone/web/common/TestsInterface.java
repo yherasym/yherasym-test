@@ -6,10 +6,8 @@ public interface TestsInterface {
 	
 	//production environment
 	
-	public static final String ENVIRONMENT = System.getProperty("environment") == null ? "http://my-qa.enterpriseappzone.com" : System.getProperty("environment");
-	
+	public static final String ENVIRONMENT = System.getProperty("environment") == null ? "my-qa.enterpriseappzone.com" : System.getProperty("environment");
 	public static final String STORE_ID = System.getProperty("store") == null ? "test-store-01" : System.getProperty("store");
-	
 	public static final String BROWSER = System.getProperty("browser") == null ? "FireFox" : System.getProperty("browser");
 	public static final String SCREEN_RESOLUTION = System.getProperty("screenResolution") == null ? "1024x768" : System.getProperty("screenResolution");
 	//
@@ -17,9 +15,12 @@ public interface TestsInterface {
 	//
 	//public static final String STORE_ID = System.getProperty("store") == null ? "test-store-01" : System.getProperty("store");
 	
-	public static final String BASE_URL = ENVIRONMENT + "/" + STORE_ID +"/"; 
+	public static final String BASE_URL = "https://" + ENVIRONMENT + "/";
+	public static final String BASE_STORE_URL = "https://" + ENVIRONMENT + "/" + STORE_ID +"/";
+	
+
 	//
-	public static final String LOGIN_PATH = "account/new";
+	//public static final String LOGIN_PATH = "account/new";
 	public static final String LANDING_STORE_ADMIN_PATH = "manage/applications";
 	public static final String LANDING_STORE_USER_PATH = "employee/products";
 	public static final String LANDING_MP_ADMIN_PATH = "manage/applications";

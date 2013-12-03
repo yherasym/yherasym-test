@@ -1,4 +1,4 @@
-package com.partnerpedia.appzone.web.storeadmin.pageobject.libs.login;
+package com.partnerpedia.appzone.web.pageobject.libs.login;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
