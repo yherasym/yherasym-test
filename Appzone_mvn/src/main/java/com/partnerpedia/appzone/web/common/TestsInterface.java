@@ -16,7 +16,7 @@ public interface TestsInterface {
 	//public static final String STORE_ID = System.getProperty("store") == null ? "test-store-01" : System.getProperty("store");
 	
 	public static final String BASE_URL = "https://" + ENVIRONMENT + "/";
-	public static final String BASE_STORE_URL = "https://" + ENVIRONMENT + "/" + STORE_ID +"/";
+	public static final String BASE_STORE_URL = BASE_URL + STORE_ID +"/";
 	
 
 	//

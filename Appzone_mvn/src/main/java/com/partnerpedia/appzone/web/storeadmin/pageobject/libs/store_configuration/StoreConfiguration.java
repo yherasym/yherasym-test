@@ -15,7 +15,7 @@ import com.partnerpedia.appzone.web.common.Utils;
 public class StoreConfiguration implements TestsInterface, PagesInterface {
 	
 	//page URL
-	private final String pageUrl = BASE_URL + "manage/store/edit"; 
+	private final String pageUrl = BASE_STORE_URL + "manage/store/edit"; 
 	//
 	private WebDriver driver; 
 	

@@ -50,7 +50,7 @@ public class LoginDeactivatedStoreTest implements TestsInterface{
 	@Test(description = "Negative Log In functionality: deactivated store (correct email&password&store): the user is trying login"
 			, dataProvider = "deactivated_store"
 			)
-	public final void LoginTestNegative(String tc, String user,
+	public final void verifyLoginDeactivatedStoreTest(String tc, String user,
 			String password, String expectedError, String tcDescription) throws Exception {
 
 		String infoString = tc + ":" + tcDescription + ":" + user + ":" + password + ":" + expectedError;

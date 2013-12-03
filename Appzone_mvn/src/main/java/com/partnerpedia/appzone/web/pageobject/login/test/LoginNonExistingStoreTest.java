@@ -41,7 +41,7 @@ public class LoginNonExistingStoreTest implements TestsInterface {
 	}	
 	
 	@Test(description = "Negative verification of Log In functionality for various negative scenarios", dataProvider = "login_negative")
-	public final void LoginTestNegative(String tc, String tcDescription) throws Exception {
+	public final void verifyLoginNonExistingStoreTest(String tc, String tcDescription) throws Exception {
 
 		String infoString = tc + ":" + tcDescription;
 		

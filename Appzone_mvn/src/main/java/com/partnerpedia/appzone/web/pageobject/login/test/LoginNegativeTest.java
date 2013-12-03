@@ -81,7 +81,7 @@ public class LoginNegativeTest implements TestsInterface {
 	}
 
 	@Test(description = "Negative verification of Log In functionality for various negative scenarios", dataProvider = "login_negative")
-	public final void LoginTestNegative(String tc, String user,
+	public final void verifyLoginNegativeTest(String tc, String user,
 			String password, String expectedError, String expectedTip,
 			String tcDescription) throws Exception {
 

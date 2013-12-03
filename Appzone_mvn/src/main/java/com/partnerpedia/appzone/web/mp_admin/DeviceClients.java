@@ -15,7 +15,7 @@ public class DeviceClients implements TestsInterface {
 		//login as MP-Admin 
 		LoginPage loginPage = new LoginPage(driver);
 		loginPage.openPage();
-		loginPage.loginSuccessful("product_appzone@partnerpedia.com", "AppZone123", "mp");
+		loginPage.loginSuccess("product_appzone@partnerpedia.com", "AppZone123", "mp");
 		//click on "Device Clients" 
 		//driver.get(ENVIRONMENT + "/appzone/manage/device_clients");
 		driver.findElement(By.linkText("Device Clients")).click();

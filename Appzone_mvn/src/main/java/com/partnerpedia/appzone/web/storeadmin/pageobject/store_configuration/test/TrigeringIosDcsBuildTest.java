@@ -40,11 +40,11 @@ public class TrigeringIosDcsBuildTest implements TestsInterface {
 		//
 		LoginPage loginPage = new LoginPage(this.driver);
 		loginPage.openPage();
-		loginPage.loginSuccessful(user_admin, password_ua, "admin");
+		loginPage.loginSuccess(user_admin, password_ua, "admin");
 	}
 	
 	@Test(description = "Positive verification of iOS-DCS functionality for various positive scenarios")
-	public final void trigerIosDcsBuildFirstTimePositive() throws Exception {
+	public final void verifyTrigeringIosDcsBuildTest() throws Exception {
 
 		//verify that Build is being uploaded for Store in 3 min (+3min extra)
 		

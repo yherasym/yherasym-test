@@ -31,7 +31,7 @@ public class TrigeringIosDcsBuildFirstTimeTest implements TestsInterface {
 	@Test(description = "Positive verification of iOS-DCS functionality for various positive scenarios"
 			//, dataProvider = "login_negative"
 			)
-	public final void triggerIosDcsBuildFirstTimePositive() throws Exception {
+	public final void verifyTrigeringIosDcsBuildTest() throws Exception {
 
 		//navigate on Store Configuration page
 		driver.findElement(By.linkText("Store")).click();

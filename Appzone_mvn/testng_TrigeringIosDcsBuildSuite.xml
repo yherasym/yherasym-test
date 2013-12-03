@@ -10,7 +10,7 @@
 	
 		<!-- running tests by class-names -->
 		<classes>
-			<class name="com.partnerpedia.appzone.web.pageobject.store_configuration.test.TrigeringIosDcsBuildTest" />
+			<class name="com.partnerpedia.appzone.web.storeadmin.pageobject.store_configuration.test.TrigeringIosDcsBuildTest" />
 		</classes>
 	</test>
  

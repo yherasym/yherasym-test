@@ -51,7 +51,7 @@ public class LoginPositiveTest implements TestsInterface {
 	
 	@Test( description = "Login/Logout functionality: verify that it works for various cases",
 			dataProvider = "login_positive")
-	public final void LoginTestPositive(String tc, String user, String password, String userType, String tcDescription) throws Exception {
+	public final void verifyLoginPositiveTest(String tc, String user, String password, String userType, String tcDescription) throws Exception {
 		
 		String infoString = tc + ":" + tcDescription + ":" + user + ":" + password;
 		System.out.println(infoString);
