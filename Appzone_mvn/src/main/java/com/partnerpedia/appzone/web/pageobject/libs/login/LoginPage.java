@@ -22,7 +22,7 @@ public class LoginPage implements PagesInterface, TestsInterface {
 	
 	//page elements
 	//store icon
-	//@FindBy()
+	//@FindBy()cc
 	//public WebElement storeIcon;
 
 	//page title tag
