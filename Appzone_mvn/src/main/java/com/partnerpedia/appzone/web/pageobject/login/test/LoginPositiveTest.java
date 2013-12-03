@@ -19,7 +19,7 @@ public class LoginPositiveTest implements TestsInterface {
 
 	@BeforeClass
 	public final void setUp() throws Exception {
-		//set browser		
+		//set browser tt	
 		this.driver = Utils.setWebDriver(BROWSER);
 	}
 
